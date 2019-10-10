@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { LogindComponent } from './logind/logind.component';
 import { MainScreenComponent } from './main-screen/main-screen.component';
 import {SignUpComponent} from './sign-up/sign-up.component';
+import {HeaderComponent} from './header/header.component';
+import { AddComponent } from './add/add.component';
+import { EditDeleteComponent } from './edit-delete/edit-delete.component';
 
 
 @NgModule({
@@ -14,6 +17,9 @@ import {SignUpComponent} from './sign-up/sign-up.component';
     LogindComponent,
     MainScreenComponent,
     SignUpComponent,
+    HeaderComponent,
+    AddComponent,
+    EditDeleteComponent
 
   ],
   imports: [
