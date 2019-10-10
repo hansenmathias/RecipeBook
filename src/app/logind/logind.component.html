@@ -1,0 +1,42 @@
+<div class="row backgroundimg">
+  <div class="container">
+    <div class="framelogin">
+      <img src='assets/loginavatar2.png' class="profil">
+      <h1>Admin Login</h1>
+        <div>
+          <p>Username</p>
+          <input
+            type="text"
+            name="username"
+            placeholder="Enter username"
+            #navn>
+
+        </div>
+        <div>
+          <p>Password</p>
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter password"
+            #password>
+        </div>
+
+        <div>
+          <input
+            type="submit"
+            name="" value="Login"
+            (click)="login(navn.value,
+          password.value)"
+            class="btn btn-primary"  class="btn btn-primary">
+        </div>
+
+        <!--<input type="submit" name="" value="Login" (click)="login(navn.value, password.value); goToHomePage()"> -->
+        <a (click)="noAccount()"  class="info">Don't have an account yet?</a>
+      <a class="nav-item nav-link" id="text" routerLink="/choose" (click)="goToHome()">Go back</a>
+    </div>
+  </div>
+</div>
+
+
+
+

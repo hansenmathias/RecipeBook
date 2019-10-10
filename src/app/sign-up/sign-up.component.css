@@ -1,0 +1,111 @@
+
+.framelogin {
+  width: 400px;
+  height: 490px;
+  background: #fff;
+  color: #000;
+  top: 50%;
+  left: 50%;
+  border-radius: 5px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  padding: 70px 30px;
+  box-shadow: 5px 5px 30px #000;
+}
+
+
+.profil {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  position: absolute;
+  top: -50px;
+  left: calc(50% - 50px);
+}
+
+
+h1 {
+  margin: 0;
+  padding: 0 0 20px;
+  text-align: center;
+  font-size: 22px;
+}
+
+.framelogin p{
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+}
+
+.framelogin input {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.framelogin input[type ="text"], input[type="password"], input[type="email"] {
+  border: none;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+  outline: none;
+  height: 40px;
+  color: #000;
+  font-size: 16px;
+}
+
+.framelogin input[type="submit"] {
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #105573;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 20px;
+}
+
+.framelogin input[type="submit"]:hover {
+  cursor: pointer;
+  background: #2C7798;
+  color: #000;
+}
+
+.framelogin a {
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 20px;
+  color: darkgrey;
+}
+
+.framelogin a:hover {
+  color: #ffc107;
+}
+
+input.ng-invalid.ng-touched{
+  border: 1px solid red;
+}
+
+
+input[type="text"].ng-touched.ng-invalid {
+  border: 1px solid red;
+
+}
+
+.help-block {
+  margin-top: -20px;
+  color: darkred;
+}
+
+
+.backgroundimg {
+  background-image: url("src/assets/chef.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+}
+
+#text {
+  font-size: 14px;
+  margin-left: 140px;
+}

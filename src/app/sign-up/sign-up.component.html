@@ -1,0 +1,46 @@
+<div class="row backgroundimg">
+  <div class="container">
+    <div class="framelogin">
+      <h1>Sign up</h1>
+
+        <div>
+          <p>Choose username</p>
+          <input
+            type="text"
+            placeholder="Enter username"
+            formControlName="username"
+            #navn>
+
+        </div>
+        <div>
+          <p>Email</p>
+          <input
+            type="text"
+            placeholder="Enter email"
+            #email
+            formControlName="email">
+
+        </div>
+        <div>
+          <p>Password</p>
+          <input
+            type="password"
+            name=""
+            placeholder="Enter password"
+            #password
+            formControlName="password">
+
+        </div>
+        <input
+          type="submit"
+          name=""
+          value="Sign up"
+          (click)="create(navn.value, password.value, email.value)"
+          class="btn btn-primary" >
+      <a class="nav-item nav-link" id="text" routerLink="/choose" (click)="goToHome()">Go back</a>
+    </div>
+  </div>
+</div>
+
+
+
