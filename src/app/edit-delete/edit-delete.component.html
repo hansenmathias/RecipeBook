@@ -2,11 +2,56 @@
 
 
 <br>
-
-<br>
 <br>
 
-  <br>
-<p>
-  edit-delete works!
-</p>
+<html lang="en">
+<head>
+  <title>Recipe Buddy!</title>
+</head>
+
+<body>
+<h1>Edit Recipe</h1>
+<form action="home.html">
+  <input type="submit" value="Home" />
+</form>
+<form>
+  <fieldset>
+    <legend>Recipe:</legend>
+    <p>
+      <label>Recipe Name: </label>
+      <input type = "text"
+             id = "myText"
+             value = "enter recipe name" />
+    </p>
+    <p>
+      <label>Ingredient Name:</label>
+      <input type = "text"
+             id = "myText"
+             value = "enter ingredient" />
+      <label>Quantity:</label>
+      <input type = "text"
+             id = "myText"
+             value = "enter ingredient quantity" />
+      <label>Units:</label>
+      <input type = "text"
+             id = "myText"
+             value = "enter ingredient unit" />
+      <button class="dropbtn">Add ingredient</button>
+    </p>
+    <p>
+      <label>Directions:</label>
+    <p>
+      <textarea id = "myTextArea" rows = "8" cols = "50">Type Directions Here</textarea>
+    </p>
+    <form action="addRecipe.html"></form>
+    <form action="home.html">
+      <input type="submit" value="Save Recipe" />
+    </form>
+    <form action="home.html">
+      <input type="submit" value="Exit Without Saving" />
+    </form>
+  </fieldset>
+</form>
+</body>
+</html>
+
