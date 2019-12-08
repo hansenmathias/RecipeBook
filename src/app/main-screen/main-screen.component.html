@@ -3,13 +3,13 @@
 <br>
 <br>
 <body>
-<h2>My Recipies</h2>
+<h2>My Recipies   {{RRname}}</h2>
 <form>
   <fieldset>
     <legend>Herb Butter Chicken Thighs</legend>
-    <img src="assets/herbchicken.jpg" alt="Herb Butter Chicken Thighs" width="200">
+    <img [src]="image" alt="{{RRname}}" width="200">
     <br>
-    <h3>Ingredients:</h3>
+    <h3>Ingredients: {{RIquantity}}</h3>
     <label>Chicken Thighs:  </label>
     <label>6</label>
     <label>peices</label>
@@ -55,15 +55,14 @@
     </ol>
 
 
-    <button class="dropbtn"> Delete</button>
+    <button class="dropbtn" (click)="delete()"> Delete</button>
     <form action="addRecipe.html"></form>
     <form action="edit.html">
-      <input type="submit" value="Edit" />
+      <input type="submit" value="Edit" (click)="edit()" />
     </form>
   </fieldset>
 </form>
 </body>
-
 
 
 

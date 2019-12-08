@@ -4,54 +4,136 @@
 <br>
 <br>
 
-<html lang="en">
-<head>
-  <title>Recipe Buddy!</title>
-</head>
 
-<body>
 <h1>Edit Recipe</h1>
-<form action="home.html">
-  <input type="submit" value="Home" />
-</form>
-<form>
-  <fieldset>
+
     <legend>Recipe:</legend>
+    <img [src]="image" alt="{{RRname}}" width="200">
     <p>
-      <label>Recipe Name: </label>
+      <label>Recipe Name:  </label>
       <input type = "text"
              id = "myText"
-             value = "enter recipe name" />
+             value = "{{RRname}}"
+             #testname
+      />
+      <label>Number of Persons: </label>
+      <input type = "text"
+             id = "myText"
+             value="{{Persons}}"
+             #testpersons
+            />
+
     </p>
-    <p>
-      <label>Ingredient Name:</label>
-      <input type = "text"
-             id = "myText"
-             value = "enter ingredient" />
-      <label>Quantity:</label>
-      <input type = "text"
-             id = "myText"
-             value = "enter ingredient quantity" />
-      <label>Units:</label>
-      <input type = "text"
-             id = "myText"
-             value = "enter ingredient unit" />
-      <button class="dropbtn">Add ingredient</button>
-    </p>
+
+    <!-- some code here - see full code at the end of this tutorial -->
+    <section *ngFor="let address of Ingrediens; let i = index;">
+
+      <!-- input fields inside the *ngFor -->
+      <label>Ingredient Name</label>
+      <input type="text" [(ngModel)]="address.RecipeName"
+             name="address_{{i}}"/>
+      <label>Quantity</label>
+      <input type="text" [(ngModel)]="address.RecipeQuanti"
+             name="street_{{i}}"/>
+      <label>Units</label>
+      <input type="text" [(ngModel)]="address.RecipeUnit"
+             name="city_{{i}}"/>
+      <label>Units</label>
+      <select [(ngModel)]="address.kgOrBla" name="country_{{i}}" placeholder="Kg">
+        <option value="Kg">Kg</option>
+        <option value="Pounds">Pounds</option>
+        <option value="weight">Weight</option>
+      </select>
+
+      <button type="button" class="btn btn-danger btn-sm" (click)="removeIngrediens(i)">Remove Ingredient</button>
+
+    </section>
+    <form>
+      <!-- Add button -->
+      <button type="button" (click)="addIngrediens()">Add Ingredient</button>
+      <!-- ngFor code -->
+    </form>
+
+
     <p>
       <label>Directions:</label>
     <p>
-      <textarea id = "myTextArea" rows = "8" cols = "50">Type Directions Here</textarea>
+      <textarea id = "myTextArea" rows = "8" cols = "50" #Idata >{{rIdata}} </textarea>
     </p>
-    <form action="addRecipe.html"></form>
-    <form action="home.html">
-      <input type="submit" value="Save Recipe" />
+
+    <form>
+      <input type="submit" value="Save Recipe" (click)="update(testname.value, Idata.value, testpersons.value)" />
     </form>
-    <form action="home.html">
-      <input type="submit" value="Exit Without Saving" />
+    <form>
+      <input type="submit" value="Exit Without Saving" (click)="exit()" />
     </form>
-  </fieldset>
-</form>
-</body>
-</html>
+
+
+
+<div class="dropzone"
+     dropZone
+     (hovered)="toggleHover($event)"
+     (dropped)="startUpload($event)"
+     [class.hovering]="isHovering">
+
+
+
+  <h3>AngularFire Drop Zone</h3>
+
+  <div class="file">
+    <label class="file-label">
+
+
+      <input class="file-input" type="file" (change)="startUpload($event.target.files)">
+
+
+      <span class="file-cta">
+            <span class="file-icon">
+              <i class="fa fa-upload"></i>
+            </span>
+            <span class="file-label">
+              or choose a file…
+            </span>
+          </span>
+    </label>
+  </div>
+</div>
+
+<div *ngIf="percentage | async as pct">
+
+  <progress class="progress is-info"
+            [value]="pct"
+            max="100">
+  </progress>
+
+  {{ pct | number }}%
+
+</div>
+
+
+<div *ngIf="snapshot | async as snap">
+  {{ snap.bytesTransferred | fileSize }} of {{ snap.totalBytes | fileSize }}
+
+  <div *ngIf="downloadURL | async as url">
+    <h3>Results!</h3>
+    <img [src]="url"><br>
+    <a [href]="url" target="_blank" rel="noopener">Download Me!</a>
+  </div>
+
+  <button (click)="task.pause()" class="button is-warning" [disabled]="!isActive(snap)">Pause</button>
+  <button (click)="task.cancel()" class="button is-danger" [disabled]="!isActive(snap)">Cancel</button>
+  <button (click)="task.resume()" class="button is-info"   [disabled]="!(snap?.state === 'paused')">Resume</button>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
 

@@ -1,1 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import "@syncfusion/ej2-base/styles/material.css";
+
+@import "@syncfusion/ej2-angular-lists/styles/material.css";
+@import "@syncfusion/ej2-layouts/styles/material.css";

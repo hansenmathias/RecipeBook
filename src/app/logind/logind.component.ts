@@ -1,22 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {AngularFirestore} from '@angular/fire/firestore';
 
-
-interface Logind {
-  companyID: string;
-  email: string;
-  firstname: string;
-  lastname: string;
-  password: string;
-  phone: string;
-  roles: string;
-  userCreated: string;
-  userId: string;
-  username: string;
-  votes: string;
-}
 
 
 
@@ -29,57 +14,81 @@ interface Logind {
 
 
 export class LogindComponent implements OnInit {
-  user: string;
-  url: string;
-  logInForm: FormGroup;
-  username: string;
+
+
+
   password: string;
-  emai: string;
-  urlRest: string;
+  uname: boolean;
+  ppassword: boolean;
 
 
-
-
-  constructor( private router: Router) {
-    this.url = 'http://localhost:8080/BoilerPlate_war/rest/login/';
-
-
-    this.urlRest = 'http://130.225.170.204:11791/Gruppe30/rest/login';
+  constructor(private router: Router, private firestore: AngularFirestore) {
   }
 
-    ngOnInit() {
-    }
+  ngOnInit() {
+  }
 
 
+  login(username: string, password: string) {
 
-login(username1: string, password1: string) {
-    this.username = username1;
-    this.password = password1;
-    console.log(username1);
-    console.log(password1);
-    this.goToMainScreen();
+    this.uname = false;
+    this.ppassword = false;
+    // return this.firestore.collection('Users').snapshotChanges().subscribe();
+
+    const userRef = this.firestore.collection('Users').ref.where('Username', '==', username).where('Password', '==', password);
+    userRef.get().then((result) => {
+      result.forEach(doc => {
+        this.uname = true;
+        this.ppassword = true;
+        if (this.uname && this.ppassword) {
+          localStorage.setItem('Username', username);
+          this.goToMainScreen();
+        }
+
+      });
+
+      console.log('something is wrong');
+    });
+  }
+
+    // move to new screen
+  noAccount() {
+    this.router.navigateByUrl('/signup');
+  }
 
 
-}
-
-
-
-
-noAccount() {
-  this.router.navigateByUrl('/signup');
-}
-
-
+  // move to new screen
   goToMainScreen() {
-  this.router.navigateByUrl('/main');
-}
+    this.router.navigateByUrl('/main');
+  }
+
+  // move to new screen
+  goToHome() {
+    this.router.navigateByUrl('');
+  }
 
 
 
-goToHome() {
-  this.router.navigateByUrl('');
-}
+  getUsers(username: string, password: string) {
+    this.uname = false;
+    this.ppassword = false;
+    // return this.firestore.collection('Users').snapshotChanges().subscribe();
 
+    const userRef = this.firestore.collection('Users').ref.where('Username', '==', username).where('Password', '==', password);
+    userRef.get().then((result) => {
+      result.forEach(doc => {
+        this.uname = true;
+        this.ppassword = true;
+        if (this.uname && this.ppassword) {
+          localStorage.setItem('Username', username);
+          this.goToMainScreen();
+        }
+
+      });
+
+      console.log('something is wrong');
+    });
+  }
 
 
 
