@@ -9,6 +9,7 @@
   border-radius: 5px;
   background: white;
   margin: 10px 0;
+  float: left;
 
 }
 .hovering {
@@ -29,3 +30,6 @@ background-color: forestgreen}
   background-color: red}
 
 
+.imgContainer{
+  float:left;
+}

@@ -29,18 +29,23 @@ interface Test {
 })
 export class MainScreenComponent implements OnInit {
   RRID = 2;
-  RRname = 'æble';
-  RIname: string;
+  RRname = '';
   RIquantity: string;
-  RIunit: string;
-  kg: string;
+
   persons: string;
   rIdata: string;
   ingrediens: string;
   picId: string;
-  ssingrediens: string;
-  ing: [];
+
   image: string;
+
+  counter: number;
+  timerRef;
+  running: boolean = false;
+  startText = 'Start';
+  isDataLoaded = false;
+
+
 
   private userProfileImga: any;
 
@@ -53,13 +58,14 @@ export class MainScreenComponent implements OnInit {
     this.image = localStorage.getItem('Picture');
     console.log('aa' + this.RRname);
     console.log('running');
+    // getting data from firebase, where it matches recipename and username
     const userRef = this.firestore.collection<Recipes[]>('Recipes').ref.where('USERNAME', '==', name).where('RRname', '==', text);
     userRef.get().then((result ) => {
      result.forEach(doc => {
        if (doc.exists) {
-         console.log('bliverkørt');
          console.log(doc.data());
-         console.log('bliverkørt');
+
+         // variables
          this.RRID = doc.data().RRID;
          this.RRname = doc.data().RRname;
          this.rIdata = doc.data().RIdata;
@@ -75,7 +81,7 @@ export class MainScreenComponent implements OnInit {
          console.log(this.rIdata);
          console.log(this.persons);
          console.log(this.ingrediens);
-
+         this.isDataLoaded = true;
      } else {
        // doc.data() will be undefined in this case
          console.log('No such document!');
@@ -90,7 +96,7 @@ export class MainScreenComponent implements OnInit {
   ngOnInit() {
   }
 
-    //delete button
+    // delete button
   delete() {
     const name = localStorage.getItem('Username');
     const text = localStorage.getItem('RecipeName');
@@ -112,7 +118,7 @@ export class MainScreenComponent implements OnInit {
     this.router.navigateByUrl('/main');
   }
 
-  //switch to new screen
+  //switch to new screen and save information local on the computer
   edit() {
     localStorage.setItem('RRID', String(this.RRID));
     localStorage.setItem('RRname', this.RRname);
@@ -133,7 +139,7 @@ export class MainScreenComponent implements OnInit {
       // getting the image from firebase
   getProfileImageUrl(userId: string) {
 
-
+// getting image where it matches pictureID
     const userRef = this.firestore.collection<Recipes[]>('photo').ref.where('pictureID', '==', userId);
     userRef.get().then((result ) => {
       result.forEach(doc => {
@@ -142,6 +148,8 @@ export class MainScreenComponent implements OnInit {
           const path = doc.data().path;
           const userStorageRefa = firebase.storage().ref().child(path);
           userStorageRefa.getDownloadURL().then(url => {
+
+            // sets the url to image in html
             this.userProfileImga = url;
 
             console.log(this.userProfileImga);
@@ -152,6 +160,29 @@ export class MainScreenComponent implements OnInit {
   });
 }
 
+// start the timer in seconds
+  startTimer() {
+    this.running = !this.running;
+    if (this.running) {
+      this.startText = 'Stop';
+      const startTime = Date.now() - (this.counter || 0);
+      this.timerRef = setInterval(() => {
+        this.counter = Date.now() - startTime;
+        this.counter = this.counter / 1000;
+      });
+    } else {
+      this.startText = 'Resume';
+      clearInterval(this.timerRef);
+    }
+  }
+
+  // clear it all
+  clearTimer() {
+    this.running = false;
+    this.startText = 'Start';
+    this.counter = undefined;
+    clearInterval(this.timerRef);
+  }
 
 
 

@@ -38,7 +38,7 @@ export class AddComponent implements OnInit {
   public Ingrediens: any[] = [{
     RecipeName: '',
     RecipeQuanti: '',
-    RecipeUnit: '',
+    // RecipeUnit: '',
     kgOrBla: ''
   }];
 
@@ -94,6 +94,11 @@ export class AddComponent implements OnInit {
 
   save(Rname: string, Idata: string, PPersons: string) {
 
+    if (this.a == null) {
+      console.log('this is null');
+    }
+
+
     const name = localStorage.getItem('Username');
     this.model = {
       USERNAME: name,
@@ -119,7 +124,7 @@ export class AddComponent implements OnInit {
     this.Ingrediens.push({
       RecipeName: '',
       RecipeQuanti: '',
-      RecipeUnit: '',
+     // RecipeUnit: '',
       kgOrBla: ''
     });
 
@@ -165,6 +170,8 @@ export class AddComponent implements OnInit {
 
     // Progress monitoring
    this.percentage = this.task.percentageChanges();
+
+
    this.snapshot = this.task.snapshotChanges().pipe(
       tap(snap => {
         if (snap.bytesTransferred === snap.totalBytes) {

@@ -4,10 +4,12 @@
   justify-content: center;
   flex-direction: column;
   height: 300px;
+  width: 300px;
   border: 2px dashed #f16624;
   border-radius: 5px;
   background: white;
   margin: 10px 0;
+  float: left;
 
 }
 .hovering {
@@ -19,3 +21,10 @@
 progress::-webkit-progress-value {
   transition: width 0.1s ease;
 }
+
+.grees {
+  background-color: forestgreen}
+
+.reds {
+  background-color: red}
+

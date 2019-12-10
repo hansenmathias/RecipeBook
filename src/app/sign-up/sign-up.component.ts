@@ -59,7 +59,7 @@ export class SignUpComponent implements OnInit {
   }
 
 
-
+// move back to loginScreen
   goToHome() {
     this.router.navigateByUrl('');
   }

@@ -80,20 +80,25 @@
       <label>Quantity</label>
       <input type="text" [(ngModel)]="recipe.RecipeQuanti"
              name="street_{{i}}"/>
-      <label>Units</label>
-      <input type="text" [(ngModel)]="recipe.RecipeUnit"
-             name="city_{{i}}"/>
+      <!--   <label>Units</label>
+       <input type="text" [(ngModel)]="recipe.RecipeUnit"
+              name="city_{{i}}"/>
+              -->
       <label>Units</label>
       <select [(ngModel)]="recipe.kgOrBla" name="country_{{i}}" placeholder="Kg">
         <option value="Kg">Kg</option>
         <option value="Pounds">Pounds</option>
-        <option value="weight">Weight</option>
+        <option value="Gallons">Gallons</option>
+        <option value="Ml">Ml</option>
+        <option value="Liters">Liters</option>
+        <option value="Gram">Gram</option>
+        <option value="Unit">Unit</option>
+        <option value="Cup">Cup</option>
       </select>
 
         <button type="button" class="btn btn-danger btn-sm" (click)="removeIngredients(i)">Remove Ingredient</button>
 
     </section>
-
 
   <form>
     <!-- Add button -->
@@ -108,14 +113,25 @@
     </p>
 
 
+  <input type="submit" value="Save Recipe"   (click)="save(Rname.value, Idata.value, Persons.value)"/>
+  <!-- [disabled]="!userprofileForm.valid"  -->
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  &nbsp;
+
+  <input  type="submit" value="Exit Without Saving"  (click)="goHome()" />
+
+
 </form>
+
 
 <div  class="dropzone"
      dropZone
      (hovered)="toggleHover($event)"
      (dropped)="startUpload($event)"
      [class.hovering]="isHovering">
-
 
 
   <h3>Picture Drop Zone</h3>
@@ -152,27 +168,19 @@
 
 
   <div *ngIf="snapshot | async as snap">
-  {{ snap.bytesTransferred | fileSize }} of {{ snap.totalBytes | fileSize }}
 
   <div *ngIf="downloadURL | async as url">
-    <h3>Results!</h3>
     <img  height="300px" width="300px" [src]="url"><br>
    <!-- <a [href]="url" target="_blank" rel="noopener">Download Me!</a> -->
   </div>
+
 <!--
   <button (click)="task.pause()" class="button is-warning" [disabled]="!isActive(snap)">Pause</button>
   <button (click)="task.cancel()" class="button is-danger" [disabled]="!isActive(snap)">Cancel</button>
   <button (click)="task.resume()" class="button is-info"   [disabled]="!(snap?.state === 'paused')">Resume</button>
   -->
-
 </div>
 
-
-
-<input class="grees" type="submit" value="Save Recipe"   (click)="save(Rname.value, Idata.value, Persons.value)"/>
-<!-- [disabled]="!userprofileForm.valid"  -->
-
-<input class="reds" type="submit" value="Exit Without Saving"  (click)="goHome()" />
 
 
 <!--

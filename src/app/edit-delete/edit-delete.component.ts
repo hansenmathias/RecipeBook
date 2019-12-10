@@ -48,7 +48,7 @@ export class EditDeleteComponent implements OnInit {
   public Ingrediens: any[] = [{
     RecipeName: '',
     RecipeQuanti: '',
-    RecipeUnit: '',
+   // RecipeUnit: '',
     kgOrBla: ''
   }];
 
@@ -126,7 +126,7 @@ exit() {
     this.Ingrediens.push({
       RecipeName: '',
       RecipeQuanti: '',
-      RecipeUnit: '',
+    //  RecipeUnit: '',
       kgOrBla: ''
     });
 
@@ -175,8 +175,8 @@ exit() {
 
       console.log('alt skulle være blevet gemt ');
       this.productsRef.add(this.model).then(_ => alert(this.successMsg));
+      this.goToMainScreen();
     });
-    //this.goToMainScreen();
   }
 
 
