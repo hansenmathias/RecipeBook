@@ -1,0 +1,77 @@
+<div *ngIf="isDataLoaded">
+
+  <nav class="navbar navbar-light bg-info navbar-fixed-top">
+    <a class="navbar-brand" routerLinkActive="active" routerLink="/main" style="font-size: 22px">RecipeBook</a>
+    <div class="collapse navbar-collapse">
+      <div style = "position:fixed; left:450px; top:10px;">
+        <div class="flex">
+          <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search"
+                 mdbInput [(ngModel)]="firstname"   #myinput>
+        </div>
+
+      </div>
+      <ul class="nav navbar-nav" style="font-size: 16px" > <!-- evt en anden font -->
+        <li><a   class="nav-item nav-link active" routerLink="/add" routerLinkActive="active">Add</a></li>
+
+      </ul>
+    </div>
+  </nav>
+
+<br>
+<br>
+
+
+<div id="sample">
+
+
+<!--
+  <ejs-listview id='List' [dataSource]='data' headerTitle='Welcome to your recipes' cssClass='e-list-template' [showHeader]='true' sortOrder='Ascending' >
+    <ng-template #template let-data="">
+      <div class="e-list-wrapper e-list-multi-line e-list-avatar" (click)="MoveOnmethod(data.text,data.id)">
+       <span class="e-avatar e-avatar-circle" *ngIf="data.avatar !== ''">{{data.avatar}}</span>
+        <span class="{{data.pic}} e-avatar e-avatar-circle" *ngIf="data.pic !== '' "><img  [src]="data.pic" alt="" height="200"> </span>
+        <span class="e-list-item-header">{{data.text}}</span>
+        <span class="e-list-content">{{data.contact}}</span>
+        <td><img [src]="data.pic" alt="Description" ></td>
+      </div>
+    </ng-template>
+  </ejs-listview>
+</div>
+
+-->
+
+
+  <ejs-listview id='List' [dataSource]='data' headerTitle='Welcome to your recipes' cssClass='e-list-template' [showHeader]='true'  sortOrder='Ascending' >
+    <ng-template #template let-data="">
+      <div *ngIf="myinput.value == data.text || myinput.value === ''">
+      <div class="e-list-wrapper e-list-multi-line e-list-avatar" (click)="MoveOnmethod(data.text,data.id, data.nypic.pic)">
+        <span class="e-avatar e-avatar-circle" *ngIf="data.avatar !== ''">{{data.avatar}}</span>
+        <span class="{{data.pic}} e-avatar e-avatar-circle" *ngIf="data.pic !== '' "><img  [src]="data.nypic.pic" alt="" height="300"> </span>
+        <span class="e-list-item-header">{{data.text}}</span>
+        <span class="e-list-content">{{data.contact}}</span>
+      </div>
+      </div>
+    </ng-template>
+  </ejs-listview>
+</div>
+
+</div>
+
+
+
+
+<!--
+<div  *ngFor="let image of images" >
+
+  <h4 >{{image}}</h4>
+  <h4>{{RRID}}</h4>
+  <img src='{{image}}'/>
+</div>
+-->
+<!--
+<li *ngFor="let t of data">
+<img src='{{t.nypic.pic}}' width="200">
+  <h1>{{t.text}}</h1>
+  <h1>{{t.contact}}</h1>
+
+-->

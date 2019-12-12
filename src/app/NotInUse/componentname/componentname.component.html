@@ -1,0 +1,51 @@
+
+<form [formGroup]="userprofileForm" (ngSubmit)="onSubmit()">
+
+
+  <div formGroupName="address">
+  <h3>Adress</h3>
+
+  <label>
+    Addresse 1:
+    <input type="text" formControlName="address1">
+  </label>
+
+
+  <label>
+    Addresse 2:
+    <input type="text" formControlName="address2">
+  </label>
+
+
+
+  <label>
+    State:
+    <input type="text" formControlName="state">
+  </label>
+
+
+  <label>
+    zip Code:
+    <input type="text" formControlName="zip">
+  </label>
+
+</div>
+
+
+
+
+<div formArrayName = "mobiles">
+  <h3>Enter mobile number</h3>
+  <button (click)="addNewMobile()"> Add New Mobile</button>
+
+  <div *ngFor="let mob of mobiles.controls;let i=index">
+    <label>Mobile {{i+1}}</label>
+    <input type="text" [formControlName]="i" >
+  </div>
+
+
+</div>
+
+<button type="submit" [disabled]="!userprofileForm.valid"></button>
+
+</form>
